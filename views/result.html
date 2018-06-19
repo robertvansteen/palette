@@ -1,0 +1,53 @@
+<div class="py-6">
+  <p class="text-sm text-grey-dark">${url}</p>
+  <h1 class="font-bold text-xl mb-4">${title}</h1>
+  <div class="mb-8">
+    <form class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" action="/palette">
+      <div class="mb-4">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
+          URL
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="url" type="url" placeholder="https://google.com"
+          name="url" value="${typeof url !== 'undefined' ? url : ''}">
+      </div>
+      <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">
+        Go!
+      </button>
+    </form>
+  </div>
+
+  <div class="rounded shadow bg-white p-4 mb-8">
+    <h2 class="font-bold text-lg mb-4">Mood</h2>
+    <p>${mood || "This site does not reflect any particular mood."}</p>
+  </div>
+
+  <div class="rounded shadow bg-white p-4 mb-8">
+    <h2 class="font-bold text-lg mb-4">Palette</h2>
+    ${swatches.map(swatch => `
+    <div class="rounded p-4 mb-4 flex justify-end relative overflow-hidden">
+      <div class="absolute h-full pin rounded" style="background-color: ${swatch.getHex()}; width: ${swatch.percentage}%"></div>
+      <div class="relative uppercase text-sm uppercase tracking-wide text-grey-dark">
+        <span>${swatch.percentage}%</span>
+        <span>—</span>
+        <span>HSL:</span>
+        <span>(${swatch.hue}, </span>
+        <span>${swatch.saturation}%, </span>
+        <span>${swatch.lightness}%)</span>
+      </div>
+    </div>
+    `).join('')}
+  </div>
+
+  <div class="rounded shadow bg-white p-4 mb-8">
+    <h2 class="font-bold text-lg mb-4">Text</h2>
+    <p>Average font size: ${fontSize.toFixed(2)} pixels.</p>
+    <p>Average font weight: ${Math.round(fontWeight)}.</p>
+  </div>
+
+  <div class="rounded shadow bg-white p-4 mb-8 ">
+    <h2 class="font-bold text-lg mb-4">Screenshot</h2>
+    <div class="border border-grey-lighter">
+      <img class="block" src="/images/${file}" alt="Screenshot of ${url}" />
+    </div>
+  </div>
+</div>

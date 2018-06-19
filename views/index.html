@@ -1,0 +1,17 @@
+<div class="mx-auto lg:w-1/2">
+  <div class="flex flex-col justify-center align-center min-h-screen">
+    <h1 class="font-semibold text-xl mb-4">Get the palette of a website</h1>
+    <form class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" action="/palette">
+      <div class="mb-4">
+        <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
+          URL
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="url" type="url" placeholder="https://google.com"
+          name="url" value="${typeof url !== 'undefined' ? url : ''}">
+      </div>
+      <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">
+        Go!
+      </button>
+    </form>
+  </div>
+</div>
